@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="240dp"
         android:layout_margin="@dimen/layout_margin"
-        android:contentDescription="Poster"
+        android:contentDescription="@string/tv_show_poster"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@tools:sample/avatars" />

@@ -1,28 +1,38 @@
 package com.example.tvguide
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.map
 import androidx.lifecycle.viewModelScope
 import com.example.tvguide.model.TVShow
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
 
-class TVShowViewModel(private val tvShowRepository: TVShowRepository) : ViewModel() {
+class TVShowViewModel(
+    private val tvShowRepository: TVShowRepository,
+    private val dispatcher: CoroutineDispatcher = Dispatchers.IO
+) : ViewModel() {
 
     init {
         fetchTVShows()
     }
 
-    fun getTVShows(): LiveData<List<TVShow>> = tvShowRepository.tvShows.map { shows ->
-        shows.sortedBy { it.name }
-    }
+    private val _tvShows = MutableStateFlow(emptyList<TVShow>())
+    val tvShows: StateFlow<List<TVShow>> = _tvShows
 
-    fun getError(): LiveData<String> = tvShowRepository.error
+    private val _error = MutableStateFlow("")
+    val error: StateFlow<String> = _error
 
     private fun fetchTVShows() {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(dispatcher) {
             tvShowRepository.fetchTVShows()
+                .catch {
+                    _error.value = "An exception occurred: ${it.message}"
+                }.collect {
+                    _tvShows.value = it
+                }
         }
     }
 }
