@@ -10,7 +10,7 @@
         android:id="@+id/movie_poster"
         android:layout_width="match_parent"
         android:layout_height="240dp"
-        android:contentDescription="Movie Poster"
+        android:contentDescription="@string/movie_poster"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

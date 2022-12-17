@@ -11,7 +11,7 @@
         android:layout_width="160dp"
         android:layout_height="160dp"
         android:layout_margin="@dimen/layout_margin"
-        android:contentDescription="Poster"
+        android:contentDescription="@string/movie_poster"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@tools:sample/avatars" />

@@ -1,11 +1,9 @@
 package com.example.popularmovies
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import androidx.lifecycle.MutableLiveData
 import com.example.popularmovies.model.Movie
-import com.example.popularmovies.model.PopularMoviesResponse
-import io.reactivex.rxjava3.core.Observable
 import org.junit.Assert.assertEquals
-import org.junit.ClassRule
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -20,35 +18,30 @@ class MovieViewModelTest {
     @get:Rule
     val rule = InstantTaskExecutorRule()
 
-    companion object {
-        @ClassRule
-        @JvmField
-        val schedulers = RxImmediateSchedulerRule()
-    }
-
     @InjectMocks
     lateinit var movieViewModel: MovieViewModel
 
     @Mock
     lateinit var movieRepository: MovieRepository
 
-    @Mock
-    lateinit var observer: androidx.lifecycle.Observer<List<Movie>>
-
     @Test
     fun getPopularMovies() {
-        val year = Calendar.getInstance().get(Calendar.YEAR).toString()
-        val movies = listOf(Movie(id = 3, release_date = year), Movie(id = 4, release_date = year))
-        val response = PopularMoviesResponse(1, movies)
+        val movieLiveData = MutableLiveData<List<Movie>>()
+        val popularMovies = listOf(
+            Movie(
+                title = "Title",
+                releaseDate = Calendar.getInstance().get(Calendar.YEAR).toString()
+            )
+        )
+        movieLiveData.postValue(popularMovies)
 
-        Mockito.`when`(movieRepository.fetchMovies())
-            .thenReturn(Observable.just(response))
-        movieViewModel.popularMovies.observeForever(observer)
-        movieViewModel.fetchPopularMovies()
+        Mockito.`when`(movieRepository.movies)
+            .thenReturn(movieLiveData)
 
         assertEquals(
-            movies,
-            movieViewModel.popularMovies.value
+            movieLiveData.value,
+            movieViewModel.popularMovies.getOrAwaitValue()
         )
     }
+
 }
