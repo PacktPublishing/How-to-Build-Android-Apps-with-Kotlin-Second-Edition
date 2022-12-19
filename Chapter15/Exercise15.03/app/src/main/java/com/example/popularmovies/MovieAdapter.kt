@@ -9,12 +9,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.popularmovies.model.Movie
 
-class MovieAdapter(private val clickListener: MovieClickListener) : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
+class MovieAdapter(private val clickListener: MovieClickListener) :
+    RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
 
     private val movies = mutableListOf<Movie>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.view_movie_item, parent, false)
+        val view =
+            LayoutInflater.from(parent.context).inflate(R.layout.view_movie_item, parent, false)
         return MovieViewHolder(view)
     }
 
@@ -44,10 +46,10 @@ class MovieAdapter(private val clickListener: MovieClickListener) : RecyclerView
             titleText.text = movie.title
 
             Glide.with(itemView.context)
-                    .load("$imageUrl${movie.poster_path}")
-                    .placeholder(R.mipmap.ic_launcher)
-                    .fitCenter()
-                    .into(poster)
+                .load("$imageUrl${movie.posterPath}")
+                .placeholder(R.mipmap.ic_launcher)
+                .fitCenter()
+                .into(poster)
         }
     }
 

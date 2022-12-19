@@ -5,12 +5,14 @@ import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
-import com.example.popularmovies.model.Movie
 
 class DetailsActivity : AppCompatActivity() {
 
     companion object {
-        const val EXTRA_MOVIE = "movie"
+        const val EXTRA_TITLE = "title"
+        const val EXTRA_RELEASE = "release"
+        const val EXTRA_OVERVIEW = "overview"
+        const val EXTRA_POSTER = "poster"
         const val IMAGE_URL = "https://image.tmdb.org/t/p/w185/"
     }
 
@@ -23,18 +25,19 @@ class DetailsActivity : AppCompatActivity() {
         val overviewText: TextView = findViewById(R.id.overview_text)
         val poster: ImageView = findViewById(R.id.movie_poster)
 
-        val movie = intent.getParcelableExtra<Movie>(EXTRA_MOVIE)
-        movie?.run {
-            titleText.text = title
-            releaseText.text = release_date.take(4)
+        val extras = intent.extras
 
-            overviewText.text = "Overview: $overview"
+        titleText.text = extras?.getString(EXTRA_TITLE).orEmpty()
+        releaseText.text = extras?.getString(EXTRA_RELEASE).orEmpty().take(4)
 
-            Glide.with(this@DetailsActivity)
-                    .load("$IMAGE_URL$poster_path")
-                    .placeholder(R.mipmap.ic_launcher)
-                    .fitCenter()
-                    .into(poster)
-        }
+        overviewText.text =
+            getString(R.string.movie_overview, extras?.getString(EXTRA_OVERVIEW).orEmpty())
+
+        val posterPath = extras?.getString(EXTRA_POSTER).orEmpty()
+        Glide.with(this@DetailsActivity)
+            .load("$IMAGE_URL$posterPath")
+            .placeholder(R.mipmap.ic_launcher)
+            .fitCenter()
+            .into(poster)
     }
 }

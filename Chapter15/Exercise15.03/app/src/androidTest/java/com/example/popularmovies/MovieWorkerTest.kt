@@ -5,11 +5,9 @@ import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.work.ListenableWorker
 import androidx.work.testing.TestWorkerBuilder
-import org.hamcrest.Matchers.`is`
-import org.junit.Test
-
 import org.junit.Assert.*
 import org.junit.Before
+import org.junit.Test
 import org.junit.runner.RunWith
 import java.util.concurrent.Executor
 import java.util.concurrent.Executors
@@ -30,7 +28,6 @@ class MovieWorkerTest {
         val worker = TestWorkerBuilder<MovieWorker>(context, executor).build()
         val result = worker.doWork()
 
-        assertThat(result, `is`(ListenableWorker.Result.success()))
-
+        assertEquals(result, ListenableWorker.Result.success())
     }
 }
