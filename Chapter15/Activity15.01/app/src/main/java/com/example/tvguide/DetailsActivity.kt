@@ -1,16 +1,19 @@
 package com.example.tvguide
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
-import com.example.tvguide.model.TVShow
 
 class DetailsActivity : AppCompatActivity() {
 
     companion object {
-        const val EXTRA_TV_SHOW = "tvshow"
+        const val EXTRA_TITLE = "title"
+        const val EXTRA_RELEASE = "release"
+        const val EXTRA_OVERVIEW = "overview"
+        const val EXTRA_POSTER = "poster"
+
         const val IMAGE_URL = "https://image.tmdb.org/t/p/w185/"
     }
 
@@ -23,17 +26,20 @@ class DetailsActivity : AppCompatActivity() {
         val overviewText: TextView = findViewById(R.id.overview_text)
         val poster: ImageView = findViewById(R.id.tv_poster)
 
-        val tvShow = intent.getParcelableExtra<TVShow>(EXTRA_TV_SHOW)
-        tvShow?.run {
-            titleText.text = name
-            releaseText.text = "First Air Date: ${first_air_date.take(4)}"
-            overviewText.text = "Overview: $overview"
+        val extras = intent.extras
 
-            Glide.with(this@DetailsActivity)
-                .load("$IMAGE_URL$poster_path")
-                .placeholder(R.mipmap.ic_launcher)
-                .fitCenter()
-                .into(poster)
-        }
+        titleText.text = extras?.getString(EXTRA_TITLE).orEmpty()
+        releaseText.text =
+            getString(R.string.tv_show_release, extras?.getString(EXTRA_RELEASE).orEmpty().take(4))
+
+        overviewText.text =
+            getString(R.string.tv_show_overview, extras?.getString(EXTRA_OVERVIEW).orEmpty())
+
+        val posterPath = extras?.getString(EXTRA_POSTER).orEmpty()
+        Glide.with(this@DetailsActivity)
+            .load("$IMAGE_URL$posterPath")
+            .placeholder(R.mipmap.ic_launcher)
+            .fitCenter()
+            .into(poster)
     }
 }

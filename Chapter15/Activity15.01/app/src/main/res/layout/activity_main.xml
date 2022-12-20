@@ -22,7 +22,7 @@
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:list="@{viewModel.TVShows}"
+            app:list="@{viewModel.tvShows}"
             app:spanCount="2"
             tools:listitem="@layout/view_tv_show_item" />
 

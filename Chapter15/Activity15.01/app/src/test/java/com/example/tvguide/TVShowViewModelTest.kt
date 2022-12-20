@@ -1,40 +1,43 @@
 package com.example.tvguide
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import androidx.lifecycle.MutableLiveData
+import app.cash.turbine.test
 import com.example.tvguide.model.TVShow
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.test.StandardTestDispatcher
+import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.mockito.Mock
-import org.mockito.Mockito
 import org.mockito.junit.MockitoJUnitRunner
+import org.mockito.kotlin.doReturn
+import org.mockito.kotlin.mock
 
+@OptIn(ExperimentalCoroutinesApi::class)
 @RunWith(MockitoJUnitRunner::class)
 class TVShowViewModelTest {
     @get:Rule
     val rule = InstantTaskExecutorRule()
 
-    @Mock
-    lateinit var tvShowRepository: TVShowRepository
-
     @Test
     fun getTVShows() {
-        val tvShowLiveData = MutableLiveData<List<TVShow>>()
-        val shows = listOf(
-            TVShow(name = "Show")
-        )
-        tvShowLiveData.postValue(shows)
+        val dispatcher = StandardTestDispatcher()
+        val tVShows = listOf(TVShow(id = 5), TVShow(id = 6))
 
-        Mockito.`when`(tvShowRepository.tvShows)
-            .thenReturn(tvShowLiveData)
-        val tvShowViewModel = TVShowViewModel(tvShowRepository)
+        val tvShowRepository: TVShowRepository = mock {
+            onBlocking { fetchTVShows() } doReturn flowOf(tVShows)
+        }
 
-        assertEquals(
-            tvShowLiveData.value,
-            tvShowViewModel.getTVShows().getOrAwaitValue()
-        )
+        val tvShowViewModel = TVShowViewModel(tvShowRepository, dispatcher)
+
+        runTest {
+            dispatcher.scheduler.advanceUntilIdle()
+            tvShowViewModel.tvShows.test {
+                assertEquals(tVShows, awaitItem())
+            }
+        }
     }
 
 }

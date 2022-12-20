@@ -30,6 +30,6 @@ class TVShowWorkerTest {
         val worker = TestWorkerBuilder<TVShowWorker>(context, executor).build()
         val result = worker.doWork()
 
-        assertThat(result, `is`(ListenableWorker.Result.success()))
+        assertEquals(ListenableWorker.Result.success(), result)
     }
 }

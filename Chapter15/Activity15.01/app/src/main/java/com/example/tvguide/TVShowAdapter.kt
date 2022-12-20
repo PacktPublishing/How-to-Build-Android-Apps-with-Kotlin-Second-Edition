@@ -9,12 +9,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.tvguide.model.TVShow
 
-class TVShowAdapter(private val clickListener: TVClickListener) : RecyclerView.Adapter<TVShowAdapter.TVShowViewHolder>() {
+class TVShowAdapter(private val clickListener: TVClickListener) :
+    RecyclerView.Adapter<TVShowAdapter.TVShowViewHolder>() {
 
     private val tvShows = mutableListOf<TVShow>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TVShowViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.view_tv_show_item, parent, false)
+        val view =
+            LayoutInflater.from(parent.context).inflate(R.layout.view_tv_show_item, parent, false)
         return TVShowViewHolder(view)
     }
 
@@ -44,7 +46,7 @@ class TVShowAdapter(private val clickListener: TVClickListener) : RecyclerView.A
             titleText.text = show.name
 
             Glide.with(itemView.context)
-                .load("$imageUrl${show.poster_path}")
+                .load("$imageUrl${show.posterPath}")
                 .placeholder(R.mipmap.ic_launcher)
                 .fitCenter()
                 .into(poster)
