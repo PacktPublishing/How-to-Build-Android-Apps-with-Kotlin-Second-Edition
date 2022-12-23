@@ -17,10 +17,8 @@ class MainActivity : AppCompatActivity() {
         val percentText: EditText = findViewById(R.id.percent_text)
         val computeButton: Button = findViewById(R.id.compute_button)
         computeButton.setOnClickListener {
-            val amount =
-                if (amountText.text.toString().isNotBlank()) amountText.text.toString() else "0"
-            val percent =
-                if (percentText.text.toString().isNotBlank()) percentText.text.toString() else "0"
+            val amount = amountText.text.toString().ifBlank { "0" }
+            val percent = percentText.text.toString().ifBlank { "0" }
             val intent = Intent(this, OutputActivity::class.java).apply {
                 putExtra("amount", amount)
                 putExtra("percent", percent)
