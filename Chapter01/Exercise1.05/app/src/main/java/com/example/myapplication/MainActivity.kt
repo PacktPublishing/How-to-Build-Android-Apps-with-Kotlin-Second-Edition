@@ -12,20 +12,16 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
         findViewById<Button>(R.id.enter_button)?.setOnClickListener {
             //Get the greeting display text
             val greetingDisplay = findViewById<TextView>(R.id.greeting_display)
-
             //Get the first name TextInputEditText value
             val firstName = findViewById<TextInputEditText>(R.id.first_name)?.text.toString().trim()
-
             //Get the last name TextInputEditText value
             val lastName = findViewById<TextInputEditText>(R.id.last_name)?.text.toString().trim()
+            //Add code in step 10 below to Check names are not empty here:
 
-            //Check names are not empty here:
             if (firstName.isNotEmpty() && lastName.isNotEmpty()) {
-
                 val nameToDisplay = firstName.plus(" ").plus(lastName)
                 //Use Kotlin's string templates feature to display the name
                 greetingDisplay?.text =
