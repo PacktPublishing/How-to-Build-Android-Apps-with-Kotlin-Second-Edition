@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     style="@style/screen_layout_margin"
     tools:context=".MainActivity">
-
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/first_name_wrapper"
         style="@style/text_input_greeting"
@@ -16,13 +15,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/first_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
+        <com.google.android.material.textfield.TextInputEditText android:id="@+id/first_name" android:layout_width="match_parent" android:layout_height="wrap_content" />
     </com.google.android.material.textfield.TextInputLayout>
-
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/last_name_wrapper"
         style="@style/text_input_greeting"
@@ -31,14 +25,8 @@
         android:hint="@string/last_name_text"
         app:layout_constraintTop_toBottomOf="@id/first_name_wrapper"
         app:layout_constraintStart_toStartOf="parent">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/last_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
+        <com.google.android.material.textfield.TextInputEditText android:id="@+id/last_name" android:layout_width="match_parent" android:layout_height="wrap_content" />
     </com.google.android.material.textfield.TextInputLayout>
-
     <com.google.android.material.button.MaterialButton
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -47,13 +35,10 @@
         android:text="@string/enter_button_text"
         app:layout_constraintTop_toBottomOf="@id/last_name_wrapper"
         app:layout_constraintStart_toStartOf="parent"/>
-
     <TextView
         android:id="@+id/greeting_display"
         android:layout_width="match_parent"
         style="@style/greeting_display"
         app:layout_constraintTop_toBottomOf="@id/enter_button"
         app:layout_constraintStart_toStartOf="parent" />
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Colors</string>
+    <string name="app_name">My Application</string>
 
     <string name="color_creator_title">Create an RGB Color</string>
     <!--Escape special characters by placing a backslash before them-->
