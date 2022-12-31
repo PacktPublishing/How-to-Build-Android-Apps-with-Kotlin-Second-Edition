@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
 
         val button: Button = findViewById(R.id.generate_button)
         button.setOnClickListener {
-            val length = lengthText.text.toString().toInt()
+            val length = lengthText.text.toString().toIntOrNull() ?: 0
             if (length < 6 || length > 20) {
                 Snackbar.make(it, "Length must be from 6 to 20", Snackbar.LENGTH_SHORT).show()
                 return@setOnClickListener
