@@ -1,23 +1,24 @@
 package com.example.tvguide.model
 
-import android.os.Parcelable
-import androidx.room.Entity
-import kotlinx.parcelize.Parcelize
+import com.squareup.moshi.Json
 
-@Parcelize
-@Entity(tableName = "tvshows",  primaryKeys = [("id")])
 data class TVShow(
-    val backdrop_path: String? = "",
-    val first_air_date: String = "",
+    @field:Json(name = "backdrop_path")
+    val backdropPath: String? = "",
+    @field:Json(name = "first_air_date")
+    val firstAirDate: String = "",
     val id: Int = 0,
     val name: String = "",
-    val original_language: String = "",
-    val original_name: String = "",
+    @field:Json(name = "original_language")
+    val originalLanguage: String = "",
+    @field:Json(name = "original_name")
+    val originalName: String = "",
     val overview: String = "",
     val popularity: Float = 0f,
-    val poster_path: String? = "",
-    val vote_average: Float = 0f,
-    val vote_count: Int = 0
-) : Parcelable
-
-
+    @field:Json(name = "poster_path")
+    val posterPath: String? = "",
+    @field:Json(name = "vote_average")
+    val voteAverage: Float = 0f,
+    @field:Json(name = "vote_count")
+    val voteCount: Int = 0
+)

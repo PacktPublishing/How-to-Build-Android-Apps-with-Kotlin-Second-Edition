@@ -2,10 +2,9 @@ package com.example.popularmovies
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.example.popularmovies.api.MovieService
-import com.example.popularmovies.database.MovieDao
-import com.example.popularmovies.database.MovieDatabase
 import com.example.popularmovies.model.Movie
 import com.example.popularmovies.model.PopularMoviesResponse
+
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
 import org.junit.Rule
@@ -28,57 +27,18 @@ class MovieRepositoryTest {
     @Mock
     lateinit var movieService: MovieService
 
-    @Mock
-    lateinit var movieDatabase: MovieDatabase
-
     @Test
-    fun fetchCachedMovies() {
-        val cachedMovies = listOf(Movie(id = 1), Movie(id = 2))
-        val dao = object : MovieDao {
-            override fun addMovies(movies: List<Movie>) {
-
-            }
-
-            override fun getMovies(): List<Movie> {
-                return cachedMovies
-            }
-
-        }
-
-        Mockito.`when`(movieDatabase.movieDao())
-            .thenReturn(dao)
-
-        runBlocking {
-            movieRepository.fetchMovies()
-            val movieLiveData = movieRepository.movies
-            assertEquals(movieLiveData.value, cachedMovies)
-        }
-    }
-
-    @Test
-    fun fetchRemoteMovies() {
-        val remoteMovies = listOf(Movie(id = 3), Movie(id = 4))
-        val remoteResponse = PopularMoviesResponse(1, remoteMovies)
-
-        val emptyDao = object : MovieDao {
-            override fun addMovies(movies: List<Movie>) {
-
-            }
-
-            override fun getMovies(): List<Movie> = emptyList()
-
-        }
-
-        Mockito.`when`(movieDatabase.movieDao())
-            .thenReturn(emptyDao)
+    fun fetchMovies() {
+        val movies = listOf(Movie(id = 3), Movie(id = 4))
+        val response = PopularMoviesResponse(1, movies)
 
         runBlocking {
             Mockito.`when`(movieService.getPopularMovies(anyString()))
-                .thenReturn(remoteResponse)
+                .thenReturn(response)
 
             movieRepository.fetchMovies()
             val movieLiveData = movieRepository.movies
-            assertEquals(movieLiveData.value, remoteMovies)
+            assertEquals(movieLiveData.value, movies)
         }
     }
 }

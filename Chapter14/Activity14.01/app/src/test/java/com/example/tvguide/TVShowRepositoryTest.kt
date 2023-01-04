@@ -1,85 +1,61 @@
 package com.example.tvguide
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-
+import app.cash.turbine.test
 import com.example.tvguide.api.TelevisionService
-import com.example.tvguide.database.TVDao
-import com.example.tvguide.database.TVDatabase
 import com.example.tvguide.model.TVResponse
 import com.example.tvguide.model.TVShow
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.ArgumentMatchers.anyString
-import org.mockito.InjectMocks
-import org.mockito.Mock
-import org.mockito.Mockito
 import org.mockito.junit.MockitoJUnitRunner
+import org.mockito.kotlin.doReturn
+import org.mockito.kotlin.doThrow
+import org.mockito.kotlin.mock
 
+@OptIn(ExperimentalCoroutinesApi::class)
 @RunWith(MockitoJUnitRunner::class)
 class TVShowRepositoryTest {
     @get:Rule
     val rule = InstantTaskExecutorRule()
 
-    @InjectMocks
-    lateinit var tvShowRepository: TVShowRepository
-
-    @Mock
-    lateinit var tvService: TelevisionService
-
-    @Mock
-    lateinit var tvDatabase: TVDatabase
-
     @Test
-    fun fetchCachedTVShows() {
-        val cachedTVShows = listOf(TVShow(id = 1), TVShow(id = 2))
-        val dao = object : TVDao {
-            override fun addTVShows(tvShows: List<TVShow>) {
+    fun fetchTVShows() {
+        val tvShows = listOf(TVShow(id = 3), TVShow(id = 4))
+        val remoteResponse = TVResponse(1, tvShows)
 
-            }
-
-            override fun getTVShows(): List<TVShow> {
-                return cachedTVShows
-            }
-
+        val tvService: TelevisionService = mock {
+            onBlocking { getTVShows(anyString()) } doReturn remoteResponse
         }
 
-        Mockito.`when`(tvDatabase.tvDao())
-            .thenReturn(dao)
+        val tvShowRepository = TVShowRepository(tvService)
 
-        runBlocking {
-            tvShowRepository.fetchTVShows()
-            val tvShowLiveData = tvShowRepository.tvShows
-            assertEquals(tvShowLiveData.value, cachedTVShows)
+        runTest {
+            tvShowRepository.fetchTVShows().test {
+                assertEquals(tvShows, awaitItem())
+                awaitComplete()
+            }
         }
     }
 
     @Test
-    fun fetchRemoteTVShows() {
-        val remoteTVShows = listOf(TVShow(id = 3), TVShow(id = 4))
-        val remoteResponse = TVResponse(1, remoteTVShows)
+    fun fetchTVShowsError() {
+        val exception = "TV Show Exception"
 
-        val emptyDao = object : TVDao {
-            override fun addTVShows(TVShows: List<TVShow>) {
-
-            }
-
-            override fun getTVShows(): List<TVShow> = emptyList()
-
+        val tvService: TelevisionService = mock {
+            onBlocking { getTVShows(anyString()) } doThrow RuntimeException(exception)
         }
 
-        Mockito.`when`(tvDatabase.tvDao())
-            .thenReturn(emptyDao)
+        val tvShowRepository = TVShowRepository(tvService)
 
-        runBlocking {
-            Mockito.`when`(tvService.getTVShows(anyString()))
-                .thenReturn(remoteResponse)
-
-            tvShowRepository.fetchTVShows()
-            val liveData = tvShowRepository.tvShows
-            assertEquals(liveData.value, remoteTVShows)
+        runTest {
+            tvShowRepository.fetchTVShows().test {
+                assertEquals(exception, awaitError().message)
+            }
         }
     }
 }

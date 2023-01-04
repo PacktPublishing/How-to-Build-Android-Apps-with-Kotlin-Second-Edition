@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Password Generator</string>
+
+    <string name="text_length">Password Length (6–20)</string>
+
+    <string name="check_numbers">Add Numbers</string>
+    <string name="check_special">Add Special Characters</string>
+    <string name="check_upper_case">Add Uppercase Characters</string>
+
+    <string name="button_copy">Copy</string>
+    <string name="button_generate">Generate Password</string>
+</resources>

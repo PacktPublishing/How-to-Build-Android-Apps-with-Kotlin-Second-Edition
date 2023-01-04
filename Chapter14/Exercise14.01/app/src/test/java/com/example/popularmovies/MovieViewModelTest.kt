@@ -7,6 +7,7 @@ import org.junit.Assert.assertEquals
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.mockito.InjectMocks
 import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.junit.MockitoJUnitRunner
@@ -17,6 +18,9 @@ class MovieViewModelTest {
     @get:Rule
     val rule = InstantTaskExecutorRule()
 
+    @InjectMocks
+    lateinit var movieViewModel: MovieViewModel
+
     @Mock
     lateinit var movieRepository: MovieRepository
 
@@ -26,14 +30,13 @@ class MovieViewModelTest {
         val popularMovies = listOf(
             Movie(
                 title = "Title",
-                release_date = Calendar.getInstance().get(Calendar.YEAR).toString()
+                releaseDate = Calendar.getInstance().get(Calendar.YEAR).toString()
             )
         )
         movieLiveData.postValue(popularMovies)
 
         Mockito.`when`(movieRepository.movies)
             .thenReturn(movieLiveData)
-        val movieViewModel = MovieViewModel(movieRepository)
 
         assertEquals(
             movieLiveData.value,
