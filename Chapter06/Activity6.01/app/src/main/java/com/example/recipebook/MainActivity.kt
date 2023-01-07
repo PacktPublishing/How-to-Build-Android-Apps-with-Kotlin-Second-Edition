@@ -14,15 +14,15 @@ import com.example.recipebook.model.RecipeUiModel
 
 class MainActivity : AppCompatActivity() {
     private val recipesList: RecyclerView
-            by lazy { findViewById(R.id.main_recipes_list) }
+        by lazy { findViewById(R.id.main_recipes_list) }
     private val addSavoryButton: View
-            by lazy { findViewById(R.id.main_add_savory_button) }
+        by lazy { findViewById(R.id.main_add_savory_button) }
     private val addSweetButton: View
-            by lazy { findViewById(R.id.main_add_sweet_button) }
+        by lazy { findViewById(R.id.main_add_sweet_button) }
     private val titleView: TextView
-            by lazy { findViewById(R.id.main_recipe_title) }
+        by lazy { findViewById(R.id.main_recipe_title) }
     private val descriptionView: TextView
-            by lazy { findViewById(R.id.main_recipe_description) }
+        by lazy { findViewById(R.id.main_recipe_description) }
 
     private val recipesAdapter by lazy {
         RecipesAdapter(
