@@ -14,9 +14,9 @@ import com.example.myrecyclerviewapp.model.ListItemUiModel
 
 class MainActivity : AppCompatActivity() {
     private val recyclerView: RecyclerView
-            by lazy { findViewById(R.id.recycler_view) }
+        by lazy { findViewById(R.id.recycler_view) }
     private val addItemButton: View
-            by lazy { findViewById(R.id.main_add_item_button) }
+        by lazy { findViewById(R.id.main_add_item_button) }
 
     private val listItemsAdapter by lazy {
         ListItemsAdapter(
