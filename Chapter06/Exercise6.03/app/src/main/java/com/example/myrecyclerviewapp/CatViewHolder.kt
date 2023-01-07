@@ -23,15 +23,15 @@ class CatViewHolder(
     private val onClickListener: OnClickListener
 ) : ViewHolder(containerView) {
     private val catBiographyView: TextView
-            by lazy { containerView.findViewById(R.id.item_cat_biography) }
+        by lazy { containerView.findViewById(R.id.item_cat_biography) }
     private val catBreedView: TextView
-            by lazy { containerView.findViewById(R.id.item_cat_breed) }
+        by lazy { containerView.findViewById(R.id.item_cat_breed) }
     private val catGenderView: TextView
-            by lazy { containerView.findViewById(R.id.item_cat_gender) }
+        by lazy { containerView.findViewById(R.id.item_cat_gender) }
     private val catNameView: TextView
-            by lazy { containerView.findViewById(R.id.item_cat_name) }
+        by lazy { containerView.findViewById(R.id.item_cat_name) }
     private val catPhotoView: ImageView
-            by lazy { containerView.findViewById(R.id.item_cat_photo) }
+        by lazy { containerView.findViewById(R.id.item_cat_photo) }
 
     fun bindData(catData: CatUiModel) {
         containerView.setOnClickListener { onClickListener.onClick(catData) }

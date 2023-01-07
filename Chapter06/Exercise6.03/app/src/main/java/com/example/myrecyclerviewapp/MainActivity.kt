@@ -11,7 +11,7 @@ import com.example.myrecyclerviewapp.model.Gender
 
 class MainActivity : AppCompatActivity() {
     private val recyclerView: RecyclerView
-            by lazy { findViewById(R.id.recycler_view) }
+        by lazy { findViewById(R.id.recycler_view) }
     private val catsAdapter by lazy {
         CatsAdapter(
             layoutInflater,
