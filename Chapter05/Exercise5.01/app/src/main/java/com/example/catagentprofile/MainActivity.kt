@@ -13,7 +13,7 @@ import retrofit2.converter.scalars.ScalarsConverterFactory
 
 class MainActivity : AppCompatActivity() {
     private val serverResponseView: TextView
-            by lazy { findViewById(R.id.main_server_response) }
+        by lazy { findViewById(R.id.main_server_response) }
 
     private val retrofit by lazy {
         Retrofit.Builder()
