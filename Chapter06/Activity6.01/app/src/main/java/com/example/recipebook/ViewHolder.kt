@@ -15,7 +15,7 @@ abstract class BaseViewHolder(
 
 class TitleViewHolder(containerView: View) : BaseViewHolder(containerView) {
     private val titleView: TextView
-            by lazy { containerView.findViewById(R.id.title_label) }
+        by lazy { containerView.findViewById(R.id.title_label) }
 
     override fun bindData(listItem: ListItem) {
         titleView.text = (listItem as TitleUiModel).title
@@ -27,7 +27,7 @@ class RecipeViewHolder(
     private val onClickListener: OnClickListener
 ) : BaseViewHolder(containerView) {
     private val titleView: TextView
-            by lazy { containerView.findViewById(R.id.recipe_title) }
+        by lazy { containerView.findViewById(R.id.recipe_title) }
 
     override fun bindData(listItem: ListItem) {
         titleView.text = (listItem as RecipeUiModel).title
