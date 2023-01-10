@@ -33,8 +33,7 @@
         android:hint="@string/first_name_label"
         android:inputType="text"
         app:layout_constraintTop_toBottomOf="@id/header_text"
-        app:layout_constraintStart_toStartOf="parent"
-        />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/last_name"
@@ -49,8 +48,7 @@
         app:layout_constraintStart_toEndOf="@id/first_name"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- android:inputType="textEmailAddress" is not enforced, but is a hint to the IME (Input Method Editor)
-usually a keyboard to configure the display for an email - typically by showing the '@' symbol -->
+    <!-- android:inputType="textEmailAddress" is not enforced, but is a hint to the IME (Input Method Editor) usually a keyboard to configure the display for an email - typically by showing the '@' symbol -->
     <EditText
         android:id="@+id/email"
         android:textSize="@dimen/default_text_size"
