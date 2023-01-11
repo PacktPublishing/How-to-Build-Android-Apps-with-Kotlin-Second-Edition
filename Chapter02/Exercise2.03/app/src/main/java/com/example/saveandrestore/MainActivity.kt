@@ -43,34 +43,34 @@ class MainActivity : AppCompatActivity() {
             val lastName = lastName.text.toString().trim()
             val email = email.text.toString()
 
-            if (firstName.isEmpty() || lastName.isEmpty() || email.isEmpty()){
-                Toast.makeText(this, getString(R.string.add_text_validation), Toast.LENGTH_LONG).show()
-            }
-            else {
+            if (firstName.isEmpty() || lastName.isEmpty() || email.isEmpty()) {
+                Toast.makeText(this, getString(R.string.add_text_validation), Toast.LENGTH_LONG)
+                    .show()
+            } else {
                 val fullName = firstName.plus(" ").plus(lastName)
 
                 discountCodeConfirmation.text =
                     getString(R.string.discount_code_confirmation, fullName)
                 // Generates discount code
-                discountCode.text = UUID.randomUUID().toString().take(8).toUpperCase()
-
+                discountCode.text = UUID.randomUUID().toString().take(8).uppercase()
                 hideKeyboard()
-                clearInputFields()
             }
         }
     }
 
     override fun onRestoreInstanceState(
-        savedInstanceState: Bundle) {
+        savedInstanceState: Bundle
+    ) {
         super.onRestoreInstanceState(savedInstanceState)
         Log.d(TAG, "onRestoreInstanceState")
 
         //Get the discount code or an empty string if it hasn't been set
-        discountCode.text = savedInstanceState.getString(DISCOUNT_CODE,"")
+        discountCode.text = savedInstanceState.getString(DISCOUNT_CODE, "")
         //Get the discount confirmation message or an empty string if it hasn't been set
         discountCodeConfirmation.text =
             savedInstanceState.getString(
-                DISCOUNT_CONFIRMATION_MESSAGE,"")
+                DISCOUNT_CONFIRMATION_MESSAGE, ""
+            )
 
     }
 
@@ -78,18 +78,14 @@ class MainActivity : AppCompatActivity() {
         super.onSaveInstanceState(outState)
         Log.d(TAG, "onSaveInstanceState")
 
-        outState.putString(DISCOUNT_CODE,
-            discountCode.text.toString())
-        outState.putString(DISCOUNT_CONFIRMATION_MESSAGE,
-            discountCodeConfirmation.text.toString())
-    }
-
-
-
-    private fun clearInputFields() {
-        firstName.text.clear()
-        lastName.text.clear()
-        email.text.clear()
+        outState.putString(
+            DISCOUNT_CODE,
+            discountCode.text.toString()
+        )
+        outState.putString(
+            DISCOUNT_CONFIRMATION_MESSAGE,
+            discountCodeConfirmation.text.toString()
+        )
     }
 
     private fun hideKeyboard() {

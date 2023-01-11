@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Save And Restore</string>
+    <string name="app_name">Save and Restore</string>
     <string name="header_text">Enter your name and email for a discount code at Your Favorite Restaurant!</string>
     <string name="first_name_label">First Name:</string>
     <string name="email_label">Email:</string>
@@ -8,4 +8,3 @@
     <string name="discount_code_confirmation">Hey  %s! Here is your discount code</string>
     <string name="add_text_validation">Please fill in all form fields</string>
 </resources>
-
