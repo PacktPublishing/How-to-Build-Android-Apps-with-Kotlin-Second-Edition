@@ -1,4 +1,4 @@
-package com.example.myapplication
+package com.example.colors
 
 import android.graphics.Color
 import android.os.Bundle
