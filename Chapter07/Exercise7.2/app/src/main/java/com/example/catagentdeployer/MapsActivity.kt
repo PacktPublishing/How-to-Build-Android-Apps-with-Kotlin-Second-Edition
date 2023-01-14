@@ -1,6 +1,7 @@
 package com.example.catagentdeployer
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.content.pm.PackageManager
 import android.location.Location
 import androidx.appcompat.app.AppCompatActivity
@@ -107,6 +108,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             .show()
     }
 
+    @SuppressLint("MissingPermission")
     private fun getLastLocation() {
         fusedLocationProviderClient.lastLocation
             .addOnSuccessListener { location: Location? ->
