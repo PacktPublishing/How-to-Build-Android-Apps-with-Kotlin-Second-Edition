@@ -1,6 +1,7 @@
 package com.example.catagentdeployer
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.Canvas
@@ -122,6 +123,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             .show()
     }
 
+    @SuppressLint("MissingPermission")
     private fun getLastLocation() {
         fusedLocationProviderClient.lastLocation
             .addOnSuccessListener { location: Location? ->
@@ -167,9 +169,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 val canvas = Canvas(bitmap)
                 drawableWithTint.draw(canvas)
                 bitmap
-            }
+            } ?: return null
         return BitmapDescriptorFactory.fromBitmap(bitmap).also {
-            bitmap?.recycle()
+            bitmap.recycle()
         }
     }
 
