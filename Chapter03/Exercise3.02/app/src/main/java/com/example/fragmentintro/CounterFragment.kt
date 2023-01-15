@@ -20,6 +20,8 @@ private const val ARG_PARAM2 = "param2"
  */
 class CounterFragment : Fragment() {
 
+    var counter  = 0
+
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -43,16 +45,18 @@ class CounterFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val counter = view.findViewById<TextView>(R.id.counter)
+        val counterValue =  view.findViewById<TextView>(R.id.counter_value)
 
         view.findViewById<Button>(R.id.plus).setOnClickListener {
-            var counterValue = counter.text.toString().toInt()
-            counter.text = (++counterValue).toString()
+            counter++
+            counterValue.text = counter.toString()
         }
 
         view.findViewById<Button>(R.id.minus).setOnClickListener {
-            var counterValue = counter.text.toString().toInt()
-            if (counterValue > 0) counter.text = (--counterValue).toString()
+            if (counter > 0) {
+                counter--
+                counterValue.text = counter.toString()
+            }
         }
     }
 
