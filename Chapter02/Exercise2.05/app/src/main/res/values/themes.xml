@@ -26,8 +26,9 @@
 
     <!-- Style for page header on rainbow color selection screen -->
     <style name="header.rainbows" parent="header">
-        <item name="android:textSize">22sp</item>
+        <item name="android:textSize">24sp</item>
         <item name="android:textAllCaps">true</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
     <!-- Instruction text style for choosing rainbow color -->
@@ -37,7 +38,7 @@
         <item name="android:gravity">center</item>
         <item name="android:layout_gravity">center</item>
         <item name="android:singleLine">false</item>
-        <item name="android:textSize">18sp</item>
+        <item name="android:textSize">20sp</item>
     </style>
 
     <!-- Style for displaying chosen rainbow color -->
