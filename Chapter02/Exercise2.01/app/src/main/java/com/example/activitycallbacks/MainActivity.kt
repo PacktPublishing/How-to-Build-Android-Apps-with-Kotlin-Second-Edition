@@ -22,12 +22,6 @@ class MainActivity : AppCompatActivity() {
         Log.d(TAG, "onStart")
     }
 
-    //Uncomment callback to see this callback on rotation
-//    override fun onConfigurationChanged(newConfig: Configuration) {
-//        super.onConfigurationChanged(newConfig)
-//        Log.d(TAG, "onConfigurationChanged")
-//    }
-
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         super.onRestoreInstanceState(savedInstanceState)
         Log.d(TAG, "onRestoreInstanceState")

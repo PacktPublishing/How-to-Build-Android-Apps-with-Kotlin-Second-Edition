@@ -18,7 +18,6 @@ class MainActivity : AppCompatActivity() {
 
     private val startForResult =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { activityResult ->
-
             val data = activityResult.data
             val backgroundColor = data?.getIntExtra(RAINBOW_COLOR, Color.parseColor(DEFAULT_COLOR))
                 ?: Color.parseColor(DEFAULT_COLOR)
@@ -26,11 +25,11 @@ class MainActivity : AppCompatActivity() {
             val colorMessage = getString(R.string.color_chosen_message, colorName)
 
             val rainbowColor = findViewById<TextView>(R.id.rainbow_color)
-
             rainbowColor.setBackgroundColor(ContextCompat.getColor(this, backgroundColor))
             rainbowColor.text = colorMessage
             rainbowColor.isVisible = true
         }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
