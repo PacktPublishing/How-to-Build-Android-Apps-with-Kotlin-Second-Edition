@@ -1,4 +1,5 @@
 <resources>
-    <string name="app_name">RandomApplication</string>
-    <string name="randomize">Randomize</string>
+    <string name="app_name">My Application</string>
+    <string name="file_provider">FileProvider</string>
+    <string name="saf">SAF</string>
 </resources>

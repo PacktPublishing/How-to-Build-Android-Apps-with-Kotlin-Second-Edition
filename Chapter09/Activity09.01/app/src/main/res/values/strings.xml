@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">My Application</string>
-    <string name="submit">Submit</string>
-    <string name="item_x">Item %d</string>
-    <string name="you_clicked_y">You clicked %s</string>
+    <string name="insert_number_rows">Insert Number of Rows</string>
+    <string name="insert_number_columns">Insert Number of Columns</string>
+    <string name="done">Done</string>
+    <string name="item_format">Item %1$s %2$s</string>
 </resources>
