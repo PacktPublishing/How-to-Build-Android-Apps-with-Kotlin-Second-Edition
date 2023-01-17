@@ -3,7 +3,7 @@ package com.example.dynamicfragments
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.FragmentContainerView
-
+const val STAR_SIGN_ID = "STAR_SIGN_ID"
 interface StarSignListener {
     fun onSelected(id: Int)
 }
