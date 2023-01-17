@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths>
+    <external-path
+        name="photos"
+        path="Android/data/com.android.testable.myapplication/files/Pictures" />
+    <external-path
+        name="videos"
+        path="Android/data/com.android.testable.myapplication/files/Movies" />
+</paths>

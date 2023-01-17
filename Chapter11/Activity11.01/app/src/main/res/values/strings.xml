@@ -1,8 +1,5 @@
 <resources>
-    <string name="app_name">Remote-media-provider</string>
-    <string name="download">Download</string>
-    <string name="success">Success</string>
-    <string name="error">Error</string>
-    <string name="settings">Settings</string>
-    <string name="number_of_items">Number of items</string>
+    <string name="app_name">My Application</string>
+    <string name="add_note">Add Note</string>
+    <string name="total">Total %d</string>
 </resources>
