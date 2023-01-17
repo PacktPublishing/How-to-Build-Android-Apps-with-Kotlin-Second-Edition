@@ -43,6 +43,12 @@ class DetailFragment : Fragment() {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_detail, container,false)
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        val starSignId = arguments?.getInt(STAR_SIGN_ID, 0) ?: 0
+        setStarSignData(starSignId)
+    }
+
     fun setStarSignData(starSignId: Int) {
         //Some text below should in production be string resources, done as hardcoded text here for simplicity
         when (starSignId) {
@@ -130,5 +136,12 @@ class DetailFragment : Fragment() {
                     putString(ARG_PARAM2, param2)
                 }
             }
+
+        private const val STAR_SIGN_ID = "STAR_SIGN_ID"
+        fun newInstance(starSignId: Int) = DetailFragment().apply {
+            arguments = Bundle().apply {
+                putInt(STAR_SIGN_ID, starSignId)
+            }
+        }
     }
 }
