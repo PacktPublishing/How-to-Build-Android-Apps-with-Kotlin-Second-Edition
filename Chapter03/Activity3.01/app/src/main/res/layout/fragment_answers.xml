@@ -1,22 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    tools:context=".AnswersFragment">
+    android:layout_width="match_parent" android:layout_height="wrap_content" tools:context=".AnswersFragment">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
 
         <TextView
-            android:id="@+id/header_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            style="@style/HeaderText"
-            tools:text="Question Text" />
+            android:id="@+id/header_text" android:layout_width="match_parent" android:layout_height="wrap_content" android:gravity="center" style="@style/HeaderText" tools:text="Question Text" />
 
         <Button
             android:id="@+id/mercury"
@@ -25,6 +16,8 @@
             android:gravity="center"
             style="@style/ButtonText"
             android:text="@string/mercury" />
+
+        <!-- Add the 7 other planets below this line here -->
 
         <Button
             android:id="@+id/venus"
@@ -86,7 +79,5 @@
             android:layout_height="wrap_content"
             style="@style/AnswerText"
             tools:text="Planet"/>
-
     </LinearLayout>
-
 </ScrollView>

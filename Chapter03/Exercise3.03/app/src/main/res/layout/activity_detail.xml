@@ -5,11 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".DetailActivity">
-
     <fragment
         android:id="@+id/star_sign_detail"
         android:name="com.example.dualpanelayouts.DetailFragment"
         android:layout_height="match_parent"
         android:layout_width="match_parent"/>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

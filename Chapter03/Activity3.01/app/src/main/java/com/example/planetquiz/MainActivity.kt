@@ -10,12 +10,9 @@ class MainActivity : AppCompatActivity(), AnswersListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        if (savedInstanceState == null ) {
+        if (savedInstanceState == null) {
 
-            findViewById<FragmentContainerView>(R.id.fragment_container)?.let { frameLayout ->
-
-                val questionsFragment = QuestionsFragment()
-
+            findViewById<FragmentContainerView>(R.id.fragment_container)?.let { frameLayout -> val questionsFragment = QuestionsFragment()
                 supportFragmentManager.beginTransaction()
                     .add(frameLayout.id, questionsFragment).commit()
             }
@@ -23,7 +20,6 @@ class MainActivity : AppCompatActivity(), AnswersListener {
     }
 
     override fun onSelected(questionId: Int) {
-
         findViewById<FragmentContainerView>(R.id.fragment_container)?.let {frameLayout ->
 
             val answersFragment = AnswersFragment.newInstance(questionId)

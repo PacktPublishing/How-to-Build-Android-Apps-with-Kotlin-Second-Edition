@@ -7,16 +7,9 @@
 /.idea/workspace.xml
 /.idea/navEditor.xml
 /.idea/assetWizardSettings.xml
-/.idea
-.idea/.*
 .DS_Store
 /build
-*.iml
 /captures
 .externalNativeBuild
 .cxx
-
-
-
-
-
+local.properties

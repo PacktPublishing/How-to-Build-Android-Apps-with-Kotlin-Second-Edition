@@ -4,12 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     tools:context=".ListFragment">
-
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -18,12 +16,10 @@
             android:textStyle="bold"
             style="@style/StarSignTextView"
             android:text="@string/star_signs" />
-
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="?android:attr/dividerVertical" />
-
         <TextView
             android:id="@+id/aquarius"
             style="@style/StarSignTextView"
@@ -164,5 +160,4 @@
             android:text="@string/capricorn"/>
 
     </LinearLayout>
-
 </ScrollView>

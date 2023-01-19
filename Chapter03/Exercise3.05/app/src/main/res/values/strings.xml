@@ -1,11 +1,8 @@
 <resources>
     <string name="app_name">Jetpack Fragments</string>
-
     <string name="star_signs">Star Signs</string>
-
     <string name="symbol">Symbol: %s</string>
     <string name="date_range">Date Range: %s</string>
-
     <string name="aquarius">Aquarius</string>
     <string name="pisces">Pisces</string>
     <string name="aries">Aries</string>
@@ -19,5 +16,4 @@
     <string name="sagittarius">Sagittarius</string>
     <string name="capricorn">Capricorn</string>
     <string name="unknown_star_sign">Unknown Star Sign</string>
-
 </resources>
