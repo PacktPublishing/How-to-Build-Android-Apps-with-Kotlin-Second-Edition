@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import android.widget.Toast.LENGTH_SHORT
-import androidx.lifecycle.Observer
 import androidx.work.Constraints
 import androidx.work.Data
 import androidx.work.NetworkType
@@ -52,32 +51,32 @@ class MainActivity : AppCompatActivity() {
             ).build()
 
         workManager.getWorkInfoByIdLiveData(catStretchingRequest.id)
-            .observe(this, Observer { info ->
+            .observe(this) { info ->
                 if (info.state.isFinished) {
                     showResult("Agent done stretching")
                 }
-            })
+            }
 
         workManager.getWorkInfoByIdLiveData(catFurGroomingRequest.id)
-            .observe(this, Observer { info ->
+            .observe(this) { info ->
                 if (info.state.isFinished) {
                     showResult("Agent done grooming its fur")
                 }
-            })
+            }
 
         workManager.getWorkInfoByIdLiveData(catLitterBoxSittingRequest.id)
-            .observe(this, Observer { info ->
+            .observe(this) { info ->
                 if (info.state.isFinished) {
                     showResult("Agent done sitting in litter box")
                 }
-            })
+            }
 
         workManager.getWorkInfoByIdLiveData(catSuitUpRequest.id)
-            .observe(this, Observer { info ->
+            .observe(this) { info ->
                 if (info.state.isFinished) {
                     showResult("Agent done suiting up. Ready to go!")
                 }
-            })
+            }
 
         workManager.beginWith(catStretchingRequest)
             .then(catFurGroomingRequest)
