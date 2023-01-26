@@ -19,7 +19,7 @@ class MovieGenresAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle)
     FragmentStateAdapter(fragmentManager, lifecycle) {
 
     override fun getItemCount(): Int {
-       return TAB_GENRES_FIXED.size
+       return TAB_GENRES_SCROLLABLE.size
     }
 
     override fun createFragment(position: Int): Fragment {

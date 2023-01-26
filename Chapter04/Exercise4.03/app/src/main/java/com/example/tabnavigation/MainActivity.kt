@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
         viewPager.adapter = adapter
 
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
-            tab.text = resources.getString(TAB_GENRES_FIXED[position])
+            tab.text = resources.getString(TAB_GENRES_SCROLLABLE[position])
         }.attach()
     }
 }
