@@ -13,6 +13,7 @@ import android.os.IBinder
 import android.os.Looper
 import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
+import androidx.core.app.ServiceCompat
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 
@@ -36,7 +37,7 @@ class RouteTrackingService : Service() {
         serviceHandler.post {
             trackToDestination(notificationBuilder)
             notifyCompletion(agentId)
-            stopForeground(true)
+            ServiceCompat.stopForeground(this, ServiceCompat.STOP_FOREGROUND_REMOVE)
             stopSelf()
         }
 
