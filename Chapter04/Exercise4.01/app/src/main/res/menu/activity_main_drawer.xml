@@ -18,7 +18,6 @@
             android:icon="@drawable/favorites"
             android:title="@string/favorites" />
     </group>
-
     <group
         android:id="@+id/menu_bottom"
         android:checkableBehavior="single">
