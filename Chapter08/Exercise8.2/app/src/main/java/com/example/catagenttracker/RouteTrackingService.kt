@@ -4,16 +4,15 @@ import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
 import android.app.Service
-import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Handler
 import android.os.HandlerThread
 import android.os.IBinder
 import android.os.Looper
-import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 import androidx.core.app.ServiceCompat
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 
@@ -68,16 +67,24 @@ class RouteTrackingService : Service() {
             .setContentIntent(pendingIntent)
             .setTicker("Agent dispatched, tracking movement")
 
-    @RequiresApi(Build.VERSION_CODES.O)
-    private fun createNotificationChannel(): String {
-        val channelId = "routeTracking"
-        val channelName = "Route Tracking"
-        val channel =
-            NotificationChannel(channelId, channelName, NotificationManager.IMPORTANCE_DEFAULT)
-        val service = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        service.createNotificationChannel(channel)
-        return channelId
-    }
+    private fun createNotificationChannel(): String =
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val newChannelId = "CatDispatch"
+            val channelName = "Cat Dispatch Tracking"
+            val channel = NotificationChannel(
+                newChannelId, channelName, NotificationManager.IMPORTANCE_DEFAULT
+            )
+            val service = requireNotNull(
+                ContextCompat.getSystemService(
+                    this,
+                    NotificationManager::class.java
+                )
+            )
+            service.createNotificationChannel(channel)
+            newChannelId
+        } else {
+            ""
+        }
 
     private fun getPendingIntent() =
         PendingIntent.getActivity(this, 0, Intent(this, MainActivity::class.java), 0)
