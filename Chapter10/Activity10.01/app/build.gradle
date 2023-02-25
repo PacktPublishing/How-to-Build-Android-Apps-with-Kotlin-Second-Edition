@@ -41,14 +41,14 @@ dependencies {
     implementation 'com.google.android.material:material:1.7.0'
     testImplementation 'junit:junit:4.13.2'
     testImplementation 'org.mockito:mockito-core:4.5.1'
-    testImplementation "org.mockito.kotlin:mockito-kotlin:4.1.0"
+    testImplementation 'org.mockito.kotlin:mockito-kotlin:4.1.0'
     testImplementation 'org.robolectric:robolectric:4.9'
     testImplementation 'androidx.test.ext:junit:1.1.5'
     testImplementation 'androidx.test.espresso:espresso-core:3.5.1'
     testImplementation 'androidx.test.espresso:espresso-intents:3.5.1'
     testImplementation 'androidx.test.espresso:espresso-contrib:3.5.1'
     debugImplementation 'androidx.fragment:fragment-testing:1.5.5'
-    debugImplementation "androidx.test:monitor:1.6.1"
+    debugImplementation 'androidx.test:monitor:1.6.1'
     androidTestImplementation 'androidx.test.espresso:espresso-idling-resource:3.5.1'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'

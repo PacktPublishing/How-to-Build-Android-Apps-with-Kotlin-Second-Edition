@@ -6,11 +6,10 @@ import androidx.lifecycle.ViewModel
 
 class MainViewModel(private val numberRepository: NumberRepository) : ViewModel() {
 
-    private val numberLiveData = MutableLiveData<Int>()
-
-    fun getLiveData(): LiveData<Int> = numberLiveData
+    private val _numberLiveData = MutableLiveData<Int>()
+    val numberLiveData: LiveData<Int> = _numberLiveData
 
     fun generateNextNumber() {
-        numberLiveData.postValue(numberRepository.generateNextNumber())
+        _numberLiveData.postValue(numberRepository.generateNextNumber())
     }
 }

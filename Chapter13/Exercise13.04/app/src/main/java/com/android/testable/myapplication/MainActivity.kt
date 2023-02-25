@@ -13,7 +13,7 @@ class MainActivity : ScopeActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        mainViewModel.getLiveData().observe(this, Observer {
+        mainViewModel.numberLiveData.observe(this, Observer {
             findViewById<TextView>(R.id.activity_main_text_view).text = it.toString()
         }
         )
