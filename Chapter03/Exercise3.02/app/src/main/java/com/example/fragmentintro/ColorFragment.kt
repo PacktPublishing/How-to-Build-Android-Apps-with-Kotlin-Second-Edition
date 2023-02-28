@@ -1,13 +1,13 @@
 package com.example.fragmentintro
 
-import android.graphics.Typeface
+import android.graphics.Color
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.fragment.app.Fragment
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -16,10 +16,10 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [StyleFragment.newInstance] factory method to
+ * Use the [ColorFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class StyleFragment : Fragment() {
+class ColorFragment : Fragment() {
 
     // TODO: Rename and change types of parameters
     private var param1: String? = null
@@ -38,28 +38,24 @@ class StyleFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        return inflater.inflate(R.layout.fragment_style, container, false)
+        return inflater.inflate(R.layout.fragment_color, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val boldButton = view.findViewById<Button>(R.id.bold_button)
-        val italicButton = view.findViewById<Button>(R.id.italic_button)
-        val resetButton = view.findViewById<Button>(R.id.reset_button)
+        val redButton = view.findViewById<Button>(R.id.red_button)
+        val greenButton = view.findViewById<Button>(R.id.green_button)
+        val blueButton = view.findViewById<Button>(R.id.blue_button)
         val helloWorldTextView = view.findViewById<TextView>(R.id.hello_world)
 
-        boldButton.setOnClickListener {
-            if (helloWorldTextView.typeface?.isItalic == true)
-                helloWorldTextView.setTypeface(helloWorldTextView.typeface,
-                    Typeface.BOLD_ITALIC)
-            else helloWorldTextView.setTypeface(null, Typeface.BOLD)
+        redButton.setOnClickListener {
+            helloWorldTextView.setTextColor(Color.RED)
         }
-        italicButton.setOnClickListener {
-            if (helloWorldTextView.typeface?.isBold == true) helloWorldTextView.setTypeface(helloWorldTextView.typeface, Typeface.BOLD_ITALIC)
-            else helloWorldTextView.setTypeface(null, Typeface.ITALIC)
+        greenButton.setOnClickListener {
+            helloWorldTextView.setTextColor(Color.GREEN)
         }
-        resetButton.setOnClickListener {
-            helloWorldTextView.setTypeface(null, Typeface.NORMAL)
+        blueButton.setOnClickListener {
+            helloWorldTextView.setTextColor(Color.BLUE)
         }
     }
 }

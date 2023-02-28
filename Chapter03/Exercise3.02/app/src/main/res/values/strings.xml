@@ -1,9 +1,9 @@
 <resources>
     <string name="app_name">Fragment Intro</string>
     <string name="hello_world">Hello World</string>
-    <string name="bold_text">Bold</string>
-    <string name="italic_text">Italic</string>
-    <string name="reset">Reset</string>
+    <string name="red_text">Red</string>
+    <string name="green_text">Green</string>
+    <string name="blue_text">Blue</string>
 
     <string name="zero">0</string>
     <string name="plus">+</string>
