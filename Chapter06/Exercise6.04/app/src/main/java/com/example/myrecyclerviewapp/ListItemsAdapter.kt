@@ -19,9 +19,9 @@ class ListItemsAdapter(
 ) : RecyclerView.Adapter<ListItemViewHolder>() {
     private val listData = mutableListOf<ListItemUiModel>()
 
-    fun setData(listData: List<ListItemUiModel>) {
-        this.listData.clear()
-        this.listData.addAll(listData)
+    fun setData(newListData: List<ListItemUiModel>) {
+        listData.clear()
+        listData.addAll(newListData)
         notifyDataSetChanged()
     }
 

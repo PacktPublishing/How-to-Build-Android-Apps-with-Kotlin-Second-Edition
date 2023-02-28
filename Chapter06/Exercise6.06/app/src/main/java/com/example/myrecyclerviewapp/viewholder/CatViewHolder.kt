@@ -3,7 +3,6 @@ package com.example.myrecyclerviewapp.viewholder
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.text.HtmlCompat
 import com.example.myrecyclerviewapp.ImageLoader
 import com.example.myrecyclerviewapp.R
 import com.example.myrecyclerviewapp.model.CatBreed
@@ -11,12 +10,8 @@ import com.example.myrecyclerviewapp.model.CatUiModel
 import com.example.myrecyclerviewapp.model.Gender
 import com.example.myrecyclerviewapp.model.ListItemUiModel
 
-private val FEMALE_SYMBOL by lazy {
-    HtmlCompat.fromHtml("&#9793;", HtmlCompat.FROM_HTML_MODE_LEGACY)
-}
-private val MALE_SYMBOL by lazy {
-    HtmlCompat.fromHtml("&#9794;", HtmlCompat.FROM_HTML_MODE_LEGACY)
-}
+private const val FEMALE_SYMBOL = "\u2640"
+private const val MALE_SYMBOL = "\u2642"
 private const val UNKNOWN_SYMBOL = "?"
 
 class CatViewHolder(

@@ -11,9 +11,9 @@ class CatsAdapter(
 ) : RecyclerView.Adapter<CatViewHolder>() {
     private val catsData = mutableListOf<CatUiModel>()
 
-    fun setData(catsData: List<CatUiModel>) {
-        this.catsData.clear()
-        this.catsData.addAll(catsData)
+    fun setData(newCatsData: List<CatUiModel>) {
+        catsData.clear()
+        catsData.addAll(newCatsData)
         notifyDataSetChanged()
     }
 
