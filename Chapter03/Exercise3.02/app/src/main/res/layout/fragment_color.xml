@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="false"
-    tools:context=".StyleFragment">
+    tools:context=".ColorFragment">
 
     <TextView
         android:id="@+id/hello_world"
@@ -19,33 +19,33 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/bold_button"
+        android:id="@+id/red_button"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:textSize="24sp"
-        android:text="@string/bold_text"
-        app:layout_constraintEnd_toStartOf="@+id/italic_button"
+        android:text="@string/red_text"
+        app:layout_constraintEnd_toStartOf="@+id/green_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/hello_world" />
 
     <Button
-        android:id="@+id/italic_button"
+        android:id="@+id/green_button"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:textSize="24sp"
-        android:text="@string/italic_text"
-        app:layout_constraintEnd_toStartOf="@+id/reset_button"
-        app:layout_constraintStart_toEndOf="@+id/bold_button"
+        android:text="@string/green_text"
+        app:layout_constraintEnd_toStartOf="@+id/blue_button"
+        app:layout_constraintStart_toEndOf="@+id/red_button"
         app:layout_constraintTop_toBottomOf="@id/hello_world" />
 
     <Button
-        android:id="@+id/reset_button"
+        android:id="@+id/blue_button"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:textSize="26sp"
-        android:text="@string/reset"
+        android:text="@string/blue_text"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/italic_button"
+        app:layout_constraintStart_toEndOf="@+id/green_button"
         app:layout_constraintTop_toBottomOf="@id/hello_world" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
