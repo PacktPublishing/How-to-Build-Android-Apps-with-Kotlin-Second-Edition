@@ -10,6 +10,8 @@ import android.graphics.Color
 import android.location.Location
 import android.os.Bundle
 import android.view.View
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.DrawableRes
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -27,9 +29,8 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 
-private const val PERMISSION_CODE_REQUEST_LOCATION = 1
-
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
+    private lateinit var requestPermissionLauncher: ActivityResultLauncher<String>
     private val markLocationButton: View
         by lazy { findViewById(R.id.maps_mark_location_button) }
 
@@ -51,60 +52,47 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         mapFragment.getMapAsync(this)
 
         markLocationButton.setOnClickListener {
-            if (getHasLocationPermission()) {
+            if (hasLocationPermission()) {
                 markParkedCar()
             }
         }
+
+        requestPermissionLauncher =
+            registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
+                if (isGranted) {
+                    getLastLocation(::updateMapLocationWithMarker)
+                } else {
+                    showPermissionRationale {
+                        requestPermissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION)
+                    }
+                }
+            }
     }
 
     override fun onResume() {
         super.onResume()
 
-        val hasLocationPermissions = getHasLocationPermission()
-        if (hasLocationPermissions) {
-            getLastLocation { location ->
-                val userLocation = LatLng(location.latitude, location.longitude)
-                updateMapLocation(userLocation)
-                userMarker = addMarkerAtLocation(userLocation, "You")
-            }
+        if (hasLocationPermission()) {
+            getLastLocation(::updateMapLocationWithMarker)
         }
     }
 
-    private fun getHasLocationPermission() = if (
-        ContextCompat.checkSelfPermission(
-            this, Manifest.permission.ACCESS_FINE_LOCATION
-        ) == PackageManager.PERMISSION_GRANTED
-    ) {
-        true
-    } else {
-        if (ActivityCompat.shouldShowRequestPermissionRationale(
-                this, Manifest.permission.ACCESS_FINE_LOCATION
-            )
-        ) {
-            showPermissionRationale { requestLocationPermission() }
-        } else {
-            requestLocationPermission()
-        }
-        false
-    }
+    private fun hasLocationPermission() =
+        ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) ==
+            PackageManager.PERMISSION_GRANTED
 
     private fun showPermissionRationale(positiveAction: () -> Unit) {
         AlertDialog.Builder(this)
             .setTitle("Location permission")
             .setMessage("We need your permission to find your current location")
             .setPositiveButton(
-                "OK"
+                android.R.string.ok
             ) { _, _ -> positiveAction() }
+            .setNegativeButton(
+                android.R.string.cancel
+            ) { dialog, _ -> dialog.dismiss() }
             .create()
             .show()
-    }
-
-    private fun requestLocationPermission() {
-        ActivityCompat.requestPermissions(
-            this,
-            arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
-            PERMISSION_CODE_REQUEST_LOCATION
-        )
     }
 
     @SuppressLint("MissingPermission")
@@ -136,16 +124,13 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private fun markParkedCar() {
         getLastLocation { location ->
-            val userLocation = LatLng(location.latitude, location.longitude)
-            userMarker?.remove()
+            val userLocation = updateMapLocationWithMarker(location)
             carMarker?.remove()
-            updateMapLocation(userLocation)
             carMarker = addMarkerAtLocation(
                 userLocation,
                 "Your Car",
                 getBitmapDescriptorFromVector(R.drawable.ic_baseline_directions_car_24)
             )
-            userMarker = addMarkerAtLocation(userLocation, "You")
             saveLocation(userLocation)
         }
     }
@@ -170,22 +155,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             } ?: return null
         return BitmapDescriptorFactory.fromBitmap(bitmap).also {
             bitmap.recycle()
-        }
-    }
-
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-
-        when (requestCode) {
-            PERMISSION_CODE_REQUEST_LOCATION -> getLastLocation { location ->
-                val userLocation = LatLng(location.latitude, location.longitude)
-                updateMapLocation(userLocation)
-                userMarker = addMarkerAtLocation(userLocation, "You")
-            }
         }
     }
 
@@ -214,6 +183,27 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             )
             userMarker = addMarkerAtLocation(userLocation, "You")
         }
+
+        when {
+            hasLocationPermission() -> getLastLocation(::updateMapLocationWithMarker)
+            ActivityCompat.shouldShowRequestPermissionRationale(
+                this,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) -> {
+                showPermissionRationale {
+                    requestPermissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION)
+                }
+            }
+            else -> requestPermissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION)
+        }
+    }
+
+    private fun updateMapLocationWithMarker(location: Location): LatLng {
+        val userLocation = LatLng(location.latitude, location.longitude)
+        updateMapLocation(userLocation)
+        userMarker?.remove()
+        userMarker = addMarkerAtLocation(userLocation, "You")
+        return userLocation
     }
 
     private fun saveLocation(latLng: LatLng) =
