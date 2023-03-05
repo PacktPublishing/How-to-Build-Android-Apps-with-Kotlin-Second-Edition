@@ -7,9 +7,7 @@
         android:id="@+id/text_home"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_margin="8dp"
         android:text="@string/home_fragment"
         android:textAlignment="center"
         android:layout_gravity="center_horizontal"
@@ -18,9 +16,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-    <com.google.android.material.button.MaterialButton
+    <Button
         android:id="@+id/button_home"
-        style="@style/button_card"
         android:layout_width="140dp"
         android:layout_height="140dp"
         android:layout_marginTop="16dp"
