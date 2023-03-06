@@ -23,8 +23,4 @@
 
     <style name="Theme.NavigationDrawer.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
-    <style name="button_card" parent="Widget.MaterialComponents.Button.OutlinedButton">
-        <item name="strokeColor">@color/purple_700</item>
-        <item name="strokeWidth">2dp</item>
-    </style>
 </resources>
