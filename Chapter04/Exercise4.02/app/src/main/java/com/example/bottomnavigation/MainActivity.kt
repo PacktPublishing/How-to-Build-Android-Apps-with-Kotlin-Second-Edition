@@ -22,6 +22,7 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         findViewById<BottomNavigationView>(R.id.nav_view) ?.setupWithNavController(navController)
     }
+
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
@@ -35,5 +36,4 @@ class MainActivity : AppCompatActivity() {
         super.onOptionsItemSelected(item)
         return item.onNavDestinationSelected(findNavController (R.id.nav_host_fragment))
     }
-
 }
