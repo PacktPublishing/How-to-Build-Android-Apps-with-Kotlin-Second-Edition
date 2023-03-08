@@ -58,35 +58,35 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-//    override fun onRestoreInstanceState(
-//        savedInstanceState: Bundle
-//    ) {
-//        super.onRestoreInstanceState(savedInstanceState)
-//        Log.d(TAG, "onRestoreInstanceState")
-//
-//        //Get the discount code or an empty string if it hasn't been set
-//        discountCode.text = savedInstanceState.getString(DISCOUNT_CODE, "")
-//        //Get the discount confirmation message or an empty string if it hasn't been set
-//        discountCodeConfirmation.text =
-//            savedInstanceState.getString(
-//                DISCOUNT_CONFIRMATION_MESSAGE, ""
-//            )
-//
-//    }
+    override fun onRestoreInstanceState(
+        savedInstanceState: Bundle
+    ) {
+        super.onRestoreInstanceState(savedInstanceState)
+        Log.d(TAG, "onRestoreInstanceState")
 
-//    override fun onSaveInstanceState(outState: Bundle) {
-//        super.onSaveInstanceState(outState)
-//        Log.d(TAG, "onSaveInstanceState")
-//
-//        outState.putString(
-//            DISCOUNT_CODE,
-//            discountCode.text.toString()
-//        )
-//        outState.putString(
-//            DISCOUNT_CONFIRMATION_MESSAGE,
-//            discountCodeConfirmation.text.toString()
-//        )
-//    }
+        //Get the discount code or an empty string if it hasn't been set
+        discountCode.text = savedInstanceState.getString(DISCOUNT_CODE, "")
+        //Get the discount confirmation message or an empty string if it hasn't been set
+        discountCodeConfirmation.text =
+            savedInstanceState.getString(
+                DISCOUNT_CONFIRMATION_MESSAGE, ""
+            )
+
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        Log.d(TAG, "onSaveInstanceState")
+
+        outState.putString(
+            DISCOUNT_CODE,
+            discountCode.text.toString()
+        )
+        outState.putString(
+            DISCOUNT_CONFIRMATION_MESSAGE,
+            discountCodeConfirmation.text.toString()
+        )
+    }
 
     private fun hideKeyboard() {
         if (currentFocus != null) {
@@ -97,7 +97,7 @@ class MainActivity : AppCompatActivity() {
 
     companion object {
         private const val TAG = "MainActivity"
-//        private const val DISCOUNT_CONFIRMATION_MESSAGE = "DISCOUNT_CONFIRMATION_MESSAGE"
-//        private const val DISCOUNT_CODE = "DISCOUNT_CODE"
+        private const val DISCOUNT_CONFIRMATION_MESSAGE = "DISCOUNT_CONFIRMATION_MESSAGE"
+        private const val DISCOUNT_CODE = "DISCOUNT_CODE"
     }
 }
