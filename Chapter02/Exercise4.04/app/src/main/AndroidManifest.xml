@@ -12,9 +12,6 @@
         android:theme="@style/Theme.IntentsIntroduction"
         tools:targetApi="31">
         <activity
-            android:name=".WelcomeActivity"
-            android:exported="false" />
-        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

@@ -4,38 +4,28 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:padding="28dp"
     android:layout_height="match_parent"
-    style="@style/page"
     tools:context=".MainActivity">
-
-    <TextView
-        android:id="@+id/header_text"
-        style="@style/header"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/header_text"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
 
     <EditText
         android:id="@+id/full_name"
-        style="@style/full_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="28sp"
         android:hint="@string/full_name_label"
-        app:layout_constraintTop_toBottomOf="@id/header_text"
+        android:layout_marginBottom="24dp"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
     <Button
         android:id="@+id/submit_button"
-        style="@style/button"
+        android:textSize="24sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/submit_button_text"
         app:layout_constraintTop_toBottomOf="@id/full_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
-
 </androidx.constraintlayout.widget.ConstraintLayout>
