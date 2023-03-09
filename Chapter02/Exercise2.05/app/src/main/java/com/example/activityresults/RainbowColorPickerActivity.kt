@@ -8,13 +8,11 @@ import android.view.View
 import android.widget.Toast
 
 class RainbowColorPickerActivity : AppCompatActivity() {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_rainbow_color_picker)
 
         val colorPickerClickListener = View.OnClickListener { view ->
-
             when (view.id) {
                 R.id.red_button -> setRainbowColor(getString(R.string.red), R.color.red)
                 R.id.orange_button -> setRainbowColor(getString(R.string.orange), R.color.orange)
@@ -40,12 +38,9 @@ class RainbowColorPickerActivity : AppCompatActivity() {
     }
 
     private fun setRainbowColor(colorName: String, color: Int) {
-
         Intent().let { pickedColorIntent ->
-
             pickedColorIntent.putExtra(RAINBOW_COLOR_NAME, colorName)
             pickedColorIntent.putExtra(RAINBOW_COLOR, color)
-
             setResult(Activity.RESULT_OK, pickedColorIntent)
             finish()
         }
