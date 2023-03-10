@@ -16,7 +16,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:alpha="1"
-        android:hint="Amount"
+        android:hint="@string/amount"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -36,7 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:alpha="1"
-        android:hint="Tip Percent"
+        android:hint="@string/tip_percent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/amount_text_layout">
@@ -54,7 +54,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
-        android:text="Compute"
+        android:text="@string/compute"
         app:layout_constraintEnd_toEndOf="@+id/percent_text_layout"
         app:layout_constraintTop_toBottomOf="@+id/percent_text_layout" />
 </androidx.constraintlayout.widget.ConstraintLayout>

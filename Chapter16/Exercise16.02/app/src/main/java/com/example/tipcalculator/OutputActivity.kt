@@ -15,6 +15,6 @@ class OutputActivity : AppCompatActivity() {
         val tip = amount * (percent.divide("100".toBigDecimal()))
 
         val tipText: TextView = findViewById(R.id.tip_text)
-        tipText.text = "The tip is $tip"
+        tipText.text = getString(R.string.tip, tip)
     }
 }
