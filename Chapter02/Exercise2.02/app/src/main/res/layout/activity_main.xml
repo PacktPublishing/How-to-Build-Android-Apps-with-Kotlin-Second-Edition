@@ -65,7 +65,7 @@
 
     <Button
         android:id="@+id/discount_button"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:layout_marginTop="12dp"
         android:gravity="center"
         android:layout_width="wrap_content"
