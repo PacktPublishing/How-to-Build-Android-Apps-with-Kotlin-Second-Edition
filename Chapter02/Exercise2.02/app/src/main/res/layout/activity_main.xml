@@ -20,8 +20,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
-
     <EditText
         android:id="@+id/first_name"
         android:textSize="20sp"
@@ -62,7 +60,6 @@
         app:layout_constraintTop_toBottomOf="@id/first_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
     <Button
         android:id="@+id/discount_button"
         android:textSize="20sp"
@@ -99,5 +96,4 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:text="XHFG6H9O" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
