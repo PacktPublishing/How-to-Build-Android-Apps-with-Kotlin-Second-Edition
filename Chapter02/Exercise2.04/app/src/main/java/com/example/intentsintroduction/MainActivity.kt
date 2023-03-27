@@ -16,25 +16,22 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         findViewById<Button>(R.id.submit_button).setOnClickListener {
-
-            val fullName = findViewById<EditText>(R.id.full_name).text.toString().trim()
+            val fullName = findViewById<EditText>(R.id.full_name).text.toString()
 
             if (fullName.isNotEmpty()) {
-
-                //Set the name of the Activity to launch
-                Intent(this, WelcomeActivity::class.java)
-                    .also { welcomeIntent ->
-                        //Add the data
-                        welcomeIntent.putExtra(FULL_NAME_KEY, fullName)
-                        //Launch
-                        startActivity(welcomeIntent)
-                    }
-
+                // Set the name of the Activity to launch
+                val welcomeIntent = Intent(this,
+                    WelcomeActivity::class.java)
+                welcomeIntent.putExtra(FULL_NAME_KEY,
+                    fullName)
+                startActivity(welcomeIntent)
             } else {
                 Toast.makeText(this, getString(
                     R.string.full_name_label),
                     Toast.LENGTH_LONG).show()
             }
         }
+
+
     }
 }

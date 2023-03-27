@@ -10,13 +10,10 @@ class WelcomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_welcome)
 
-        //Get the intent which started this activity
-        intent?.let {
-
-            //Set the welcome message
-            val fullName = it.getStringExtra(FULL_NAME_KEY)
-            findViewById<TextView>(R.id.welcome_text).text =
-                getString(R.string.welcome_text, fullName)
+        if (intent != null) {
+            val fullName = intent.getStringExtra(FULL_NAME_KEY)
+            findViewById<TextView>(R.id.welcome_text).text = getString(R.string.welcome_text, fullName)
         }
+
     }
 }

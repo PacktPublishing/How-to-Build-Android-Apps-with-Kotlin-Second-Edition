@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
             val firstName = findViewById<TextInputEditText>(R.id.first_name)?.text.toString().trim()
             //Get the last name TextInputEditText value
             val lastName = findViewById<TextInputEditText>(R.id.last_name)?.text.toString().trim()
-            //Add code in step 10 below to Check names are not empty here:
+            //Add code in step 9 below to Check names are not empty here:
 
             if (firstName.isNotEmpty() && lastName.isNotEmpty()) {
                 val nameToDisplay = firstName.plus(" ").plus(lastName)

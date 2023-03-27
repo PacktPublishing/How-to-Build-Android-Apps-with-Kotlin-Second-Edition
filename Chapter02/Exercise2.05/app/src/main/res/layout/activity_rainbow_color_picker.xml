@@ -6,86 +6,83 @@
     android:layout_height="wrap_content">
 
     <LinearLayout
-        style="@style/page"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:orientation="vertical"
         tools:context=".RainbowColorPickerActivity">
-
         <TextView
             android:id="@+id/header_text"
-            style="@style/header.rainbows"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:padding="10dp"
             android:text="@string/header_text_picker"
+            android:textAllCaps="true"
+            android:textSize="24sp"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/red_button"
-            style="@style/button"
-            android:layout_width="wrap_content"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/red"
-            android:text="@string/red"/>
+            android:text="@string/red" />
 
         <Button
             android:id="@+id/orange_button"
-            style="@style/button"
-            android:layout_width="wrap_content"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/orange"
             android:text="@string/orange"/>
 
         <Button
             android:id="@+id/yellow_button"
-            style="@style/button"
-            android:layout_width="wrap_content"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/yellow"
             android:text="@string/yellow"/>
 
         <Button
             android:id="@+id/green_button"
-            style="@style/button"
-            android:layout_width="wrap_content"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/green"
             android:text="@string/green" />
 
         <Button
             android:id="@+id/blue_button"
-            style="@style/button"
-            android:layout_width="wrap_content"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/blue"
             android:text="@string/blue"/>
 
         <Button
             android:id="@+id/indigo_button"
-            style="@style/button"
-            android:layout_width="wrap_content"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/indigo"
             android:text="@string/indigo" />
 
         <Button
             android:id="@+id/violet_button"
-            style="@style/button"
-            android:layout_width="wrap_content"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/violet"
             android:text="@string/violet" />
 
         <TextView
-            style="@style/body"
-            android:layout_width="wrap_content"
+            android:layout_width="380dp"
             android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="10dp"
             android:text="@string/footer_text_picker"
+            android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
     </LinearLayout>
 </ScrollView>

@@ -5,7 +5,6 @@
     <string name="footer_text_picker">Click the button above which is your favorite color of the rainbow.</string>
     <string name="color_chosen_message">%s is your favorite color!</string>
     <string name="submit_button_text">CHOOSE COLOR</string>
-
     <string name="red">RED</string>
     <string name="orange">ORANGE</string>
     <string name="yellow">YELLOW</string>
@@ -13,7 +12,6 @@
     <string name="blue">BLUE</string>
     <string name="indigo">INDIGO</string>
     <string name="violet">VIOLET</string>
-
     <string name="unexpected_color">Unexpected color</string>
 
 </resources>

@@ -34,12 +34,12 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        findViewById<Button>(R.id.submit_button).setOnClickListener {
-
-            startForResult.launch(
-                Intent(this, RainbowColorPickerActivity::class.java)
-            )
-        }
+        findViewById<Button>(R.id.submit_button)
+            .setOnClickListener {
+                startForResult.launch(Intent(this,
+                    RainbowColorPickerActivity::class.java)
+                )
+            }
     }
+
 }
