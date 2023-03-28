@@ -5,12 +5,12 @@ plugins {
 
 android {
     namespace 'com.example.myapplication'
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.example.myapplication"
-        minSdk 21
-        targetSdk 32
+        minSdk 24
+        targetSdk 33
         versionCode 1
         versionName "1.0"
 
@@ -37,15 +37,15 @@ dependencies {
     // Kotlin extensions, jetpack component with Android Kotlin language features
     implementation 'androidx.core:core-ktx:1.7.0'
     // Provides backwards compatible support libraries and jetpack components
-    implementation 'androidx.appcompat:appcompat:1.5.1'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
     // Material design components to theme and style your app
-    implementation 'com.google.android.material:material:1.7.0'
+    implementation 'com.google.android.material:material:1.8.0'
     // The ConstraintLayout ViewGroup updated separately from main Android sources
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     // Standard Test library for unit tests
     testImplementation 'junit:junit:4.13.2'
     // UI Test runner
-    androidTestImplementation 'androidx.test.ext:junit:1.1.4'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     // Library for creating Android UI tests
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 }

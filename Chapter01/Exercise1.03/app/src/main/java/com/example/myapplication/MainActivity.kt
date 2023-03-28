@@ -11,6 +11,5 @@ class MainActivity : AppCompatActivity() {
         webView.settings.javaScriptEnabled = true
         setContentView(webView)
         webView.loadUrl("https://www.google.com")
-
     }
 }
