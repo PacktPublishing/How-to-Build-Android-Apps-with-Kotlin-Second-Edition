@@ -96,6 +96,6 @@ class MainFragment : Fragment() {
                 }
             }
 
-        const val TAG = "MainFragment"
+        private const val TAG = "MainFragment"
     }
 }
