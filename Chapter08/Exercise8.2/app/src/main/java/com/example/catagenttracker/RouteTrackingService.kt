@@ -98,6 +98,7 @@ class RouteTrackingService : Service() {
         for (i in 10 downTo 0) {
             Thread.sleep(1000L)
             notificationBuilder.setContentText("$i seconds to destination")
+                .setSilent(true)
             notificationManager.notify(NOTIFICATION_ID, notificationBuilder.build())
         }
     }
