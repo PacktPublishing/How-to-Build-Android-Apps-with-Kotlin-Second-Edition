@@ -14,6 +14,9 @@ import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 
 class WaterTrackingService : Service() {
+    private val notificationManager by lazy {
+        getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+    }
     private var fluidBalanceMilliliters = 0f
     private lateinit var notificationBuilder: NotificationCompat.Builder
     private lateinit var serviceHandler: Handler
@@ -24,7 +27,7 @@ class WaterTrackingService : Service() {
         super.onCreate()
 
         notificationBuilder = startForegroundService()
-        val handlerThread = HandlerThread("RouteTracking").apply { start() }
+        val handlerThread = HandlerThread("FluidTracking").apply { start() }
         serviceHandler = Handler(handlerThread.looper)
         updateFluidBalance()
     }
@@ -70,13 +73,15 @@ class WaterTrackingService : Service() {
             addToFluidBalance(-0.144f)
             notificationBuilder.setContentText(
                 "Your fluid balance: %.2f".format(fluidBalanceMilliliters)
-            )
-            startForeground(NOTIFICATION_ID, notificationBuilder.build())
+            ).setSilent(true)
+            notificationManager.notify(NOTIFICATION_ID, notificationBuilder.build())
         }, 5000L)
     }
 
-    private fun getPendingIntent() =
-        PendingIntent.getActivity(this, 0, Intent(this, MainActivity::class.java), 0)
+    private fun getPendingIntent(): PendingIntent {
+        val flag = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) PendingIntent.FLAG_IMMUTABLE else 0
+        return PendingIntent.getActivity(this, 0, Intent(this, MainActivity::class.java), flag)
+    }
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun createNotificationChannel(): String {
@@ -96,6 +101,7 @@ class WaterTrackingService : Service() {
             .setSmallIcon(R.drawable.ic_launcher_foreground)
             .setContentIntent(pendingIntent)
             .setTicker("Fluid balance tracking started")
+            .setOngoing(true)
 
     companion object {
         const val EXTRA_INTAKE_AMOUNT_MILLILITERS = "intake"

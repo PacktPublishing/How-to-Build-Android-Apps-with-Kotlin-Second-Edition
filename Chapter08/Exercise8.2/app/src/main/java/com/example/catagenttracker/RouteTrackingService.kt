@@ -3,6 +3,7 @@ package com.example.catagenttracker
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
+import android.app.PendingIntent.FLAG_IMMUTABLE
 import android.app.Service
 import android.content.Intent
 import android.os.Build
@@ -66,6 +67,7 @@ class RouteTrackingService : Service() {
             .setSmallIcon(R.drawable.ic_launcher_foreground)
             .setContentIntent(pendingIntent)
             .setTicker("Agent dispatched, tracking movement")
+            .setOngoing(true)
 
     private fun createNotificationChannel(): String =
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -86,14 +88,18 @@ class RouteTrackingService : Service() {
             ""
         }
 
-    private fun getPendingIntent() =
-        PendingIntent.getActivity(this, 0, Intent(this, MainActivity::class.java), 0)
+    private fun getPendingIntent(): PendingIntent {
+        val flag = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) FLAG_IMMUTABLE else 0
+        return PendingIntent.getActivity(this, 0, Intent(this, MainActivity::class.java), flag)
+    }
 
     private fun trackToDestination(notificationBuilder: NotificationCompat.Builder) {
+        val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
         for (i in 10 downTo 0) {
             Thread.sleep(1000L)
             notificationBuilder.setContentText("$i seconds to destination")
-            startForeground(NOTIFICATION_ID, notificationBuilder.build())
+                .setSilent(true)
+            notificationManager.notify(NOTIFICATION_ID, notificationBuilder.build())
         }
     }
 
