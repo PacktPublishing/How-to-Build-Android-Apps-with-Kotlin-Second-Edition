@@ -16,11 +16,12 @@ class MainActivity : AppCompatActivity() {
             //Get the greeting display text
             val greetingDisplay = findViewById<TextView>(R.id.greeting_display)
             //Get the first name TextInputEditText value
-            val firstName = findViewById<TextInputEditText>(R.id.first_name)?.text.toString().trim()
+            val firstName = findViewById<TextInputEditText>(R.id.first_name)
+                ?.text.toString().trim()
             //Get the last name TextInputEditText value
-            val lastName = findViewById<TextInputEditText>(R.id.last_name)?.text.toString().trim()
-            //Add code in step 9 below to Check names are not empty here:
-
+            val lastName = findViewById<TextInputEditText>(R.id.last_name)
+                ?.text.toString().trim()
+            //Add code below this line in step 9 to Check names are not empty here:
             if (firstName.isNotEmpty() && lastName.isNotEmpty()) {
                 val nameToDisplay = firstName.plus(" ").plus(lastName)
                 //Use Kotlin's string templates feature to display the name
